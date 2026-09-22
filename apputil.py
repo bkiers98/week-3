@@ -26,3 +26,16 @@ def to_binary(i):
     else:
         return int(str(to_binary(i // 2)) + str(i%2))
 
+
+def task_1():
+    bellevue_cols = []
+
+    #replace '?' gender with NaN
+    df_bellevue.loc[:, ['gender']] = df_bellevue['gender'].replace('?', np.nan)
+
+    for col in df_bellevue:
+        bellevue_cols.append((col, df_bellevue[col].isna().sum()))
+    bellevue_cols.sort(key=lambda x: x[1])
+    bellevue_cols_sorted = [col[0] for col in bellevue_cols]
+    print(bellevue_cols_sorted)
+    
