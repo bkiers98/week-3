@@ -24,8 +24,12 @@ def to_binary(i):
     elif i == 1:
         return 1
     else:
-        return int(str(to_binary(i // 2)) + str(i%2))
+        return str(to_binary(i // 2)) + str(i%2)
 
+
+url = 'https://github.com/melaniewalsh/Intro-Cultural-Analytics/raw/master/book/data/bellevue_almshouse_modified.csv'
+
+df_bellevue = pd.read_csv(url)
 
 def task_1():
     bellevue_cols = []
@@ -35,7 +39,8 @@ def task_1():
 
     for col in df_bellevue:
         bellevue_cols.append((col, df_bellevue[col].isna().sum()))
+
     bellevue_cols.sort(key=lambda x: x[1])
     bellevue_cols_sorted = [col[0] for col in bellevue_cols]
-    print(bellevue_cols_sorted)
-    
+
+    return bellevue_cols_sorted    
