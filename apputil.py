@@ -4,6 +4,9 @@ import numpy as np
 
 
 # update/add code below ...
+url = 'https://github.com/melaniewalsh/Intro-Cultural-Analytics/raw/master/book/data/bellevue_almshouse_modified.csv'
+df_bellevue = pd.read_csv(url)
+
 def fibonacci(n):
     '''
     Given n, this function will return the nth number of the Fibonacci Series.
@@ -28,9 +31,6 @@ def to_binary(i):
         return str(to_binary(i // 2)) + str(i%2)
 
 
-url = 'https://github.com/melaniewalsh/Intro-Cultural-Analytics/raw/master/book/data/bellevue_almshouse_modified.csv'
-
-df_bellevue = pd.read_csv(url)
 
 def task_1():
     '''
