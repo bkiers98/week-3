@@ -62,7 +62,7 @@ def task_2():
                                         .reset_index(name='total_admissions') \
                                         .sort_values('year') \
                                         .reset_index(drop=True)
-    return df_year_admins[['year', 'total_admissions']]
+    return df_year_admins
 
 
 def task_3():
