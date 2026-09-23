@@ -39,9 +39,6 @@ def task_1():
     '''
     bellevue_cols = []
 
-    #replace '?' gender with NaN
-    df_bellevue.loc[:, ['gender']] = df_bellevue['gender'].replace('?', np.nan)
-
     for col in df_bellevue:
         bellevue_cols.append((col, df_bellevue[col].isna().sum()))
 
