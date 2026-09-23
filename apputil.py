@@ -69,7 +69,7 @@ def task_3():
     '''
     df_gender_mean_age = df_bellevue.groupby('gender') \
                                     [['age']].mean()
-    return df_gender_mean_age
+    return df_gender_mean_age['age']
 
 
 def task_4():
