@@ -39,6 +39,10 @@ def task_1():
     '''
     bellevue_cols = []
 
+    #replace '?', 'h', 'g' genders with NaN
+    df_bellevue.loc[:, ['gender']] = df_bellevue['gender'] \
+                .replace(['?', 'h', 'g'], np.nan)
+
     for col in df_bellevue:
         bellevue_cols.append((col, df_bellevue[col].isna().sum()))
 
@@ -54,7 +58,7 @@ def task_2():
     the amount of admissions for each year in the dataset.
     '''
     df_bellevue['year'] = pd.to_datetime(df_bellevue['date_in']).dt.year
-    df_year_admins = df_bellevue['year'].value_counts().reset_index(name='total_admissions')
+    df_year_admins = df_bellevue['year'].value_counts()
     return df_year_admins
 
 
