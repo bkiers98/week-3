@@ -60,7 +60,8 @@ def task_2():
     df_bellevue['year'] = pd.to_datetime(df_bellevue['date_in']).dt.year
     df_year_admins = df_bellevue['year'].value_counts() \
                                         .reset_index(name='total_admissions') \
-                                        .sort_values('year')
+                                        .sort_values('year') \
+                                        .reset_index(drop=True)
     return df_year_admins
 
 
