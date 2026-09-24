@@ -7,6 +7,10 @@ import numpy as np
 url = 'https://github.com/melaniewalsh/Intro-Cultural-Analytics/raw/master/book/data/bellevue_almshouse_modified.csv'
 df_bellevue = pd.read_csv(url)
 
+# replace '?', 'h', 'g' genders with NaN
+df_bellevue.loc[:, ['gender']] = df_bellevue['gender'] \
+            .replace(['?', 'h', 'g'], np.nan)
+
 def fibonacci(n):
     '''
     Given n, this function will return the nth number of the Fibonacci Series.
@@ -19,17 +23,16 @@ def fibonacci(n):
         return fibonacci(n-2) + fibonacci(n-1)
 
 
-def to_binary(i):
+def to_binary(number):
     '''
     Given an integer, this function will return its binary representation.
     '''
-    if i == 0:
+    if number == 0:
         return '0'
-    elif i == 1:
+    elif number == 1:
         return '1'
     else:
-        return str(to_binary(i // 2)) + str(i%2)
-
+        return str(to_binary(number // 2)) + str(number%2)
 
 
 def task_1():
@@ -39,14 +42,10 @@ def task_1():
     '''
     bellevue_cols = []
 
-    #replace '?', 'h', 'g' genders with NaN
-    df_bellevue.loc[:, ['gender']] = df_bellevue['gender'] \
-                .replace(['?', 'h', 'g'], np.nan)
-
     for col in df_bellevue:
         bellevue_cols.append((col, df_bellevue[col].isna().sum()))
 
-    bellevue_cols.sort(key=lambda x: x[1])
+    bellevue_cols.sort(key=lambda column_pair: column_pair[1])
     bellevue_cols_sorted = [col[0] for col in bellevue_cols]
 
     return bellevue_cols_sorted
@@ -77,8 +76,8 @@ def task_3():
 
 def task_4():
     '''
-    Returns a list of the 5 most common professions in order of prevalence. 
+    Returns a list of the 5 most common professions in order of prevalence.
     '''
     professions = df_bellevue['profession'].value_counts().sort_values(ascending=False).index[:5].to_list()
-    
+
     return professions
