@@ -53,8 +53,8 @@ def task_1():
 
 def task_2():
     '''
-    Returns a data frame with two columns ('year' and 'total_admissions'), describing
-    the amount of admissions for each year in the dataset.
+    Returns a data frame with two columns ('year' and 'total_admissions'),
+    describing the amount of admissions for each year in the dataset.
     '''
     df_bellevue['year'] = pd.to_datetime(df_bellevue['date_in']).dt.year
     df_year_admins = df_bellevue['year'].value_counts() \
@@ -66,8 +66,8 @@ def task_2():
 
 def task_3():
     '''
-    Returns a series with 'gender' as the index, and the average age for each gender
-    as the value.
+    Returns a series with 'gender' as the index, and the average age for
+    each gender as the value.
     '''
     df_gender_mean_age = df_bellevue.groupby('gender') \
                                     [['age']].mean()
@@ -78,6 +78,9 @@ def task_4():
     '''
     Returns a list of the 5 most common professions in order of prevalence.
     '''
-    professions = df_bellevue['profession'].value_counts().sort_values(ascending=False).index[:5].to_list()
+    professions = df_bellevue['profession'].value_counts() \
+                                            .sort_values(ascending=False) \
+                                            .index[:5] \
+                                            .to_list()
 
     return professions
